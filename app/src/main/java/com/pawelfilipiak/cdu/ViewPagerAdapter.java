@@ -9,8 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.pawelfilipiak.cdu.R;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 /**
  * Created by Pawel on 31-01-2018.
@@ -19,26 +20,27 @@ import com.squareup.picasso.Picasso;
 public class ViewPagerAdapter extends PagerAdapter {
 
     Activity activity;
-    String[] images;
+    ArrayList<String> images;
     LayoutInflater inflater;
 
-    public ViewPagerAdapter(Activity activity, String[] images){
+    public ViewPagerAdapter(Activity activity, ArrayList<String> images){
         this.activity = activity;
         this.images = images;
     }
 
     @Override
     public int getCount() {
-        return images.length;
+        return images.size();
     }
+
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
-
-    public Object instantiateItem(ViewGroup container, int position) {
-        inflater = (LayoutInflater)activity.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    ViewGroup container;
+    public Object instantiateItem(View container, int position) {
+        inflater = (LayoutInflater)container.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.view_pager_item,container, false);
 
         ImageView image;
@@ -46,14 +48,14 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         try{
             Picasso.with(activity.getApplicationContext())
-                    .load(images[position])
+                    .load(images.get(position))
                     .placeholder(R.mipmap.ic_launcher)
                     .error(R.mipmap.ic_launcher)
                     .into(image);
         }catch (Exception ex){
-            System.out.println("No kurde nie dziala");
+            System.err.println("No kurde nie dziala");
         }
-
+        this.container = container;
         container.addView(itemView);
         return itemView;
     }

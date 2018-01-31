@@ -11,6 +11,33 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="100pt"
+        android:layout_above="@+id/viewPager2"
+        android:layout_alignParentStart="true" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager2"
+        android:layout_width="match_parent"
+        android:layout_height="100pt"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/gorabttn"
+        android:layout_width="80pt"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/viewPager"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:text="Dodaj Gore"
+        android:onClick="dodajGore"/>
+
+    <Button
+        android:id="@+id/dolbttn"
+        android:layout_width="80pt"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/viewPager"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:text="Dodaj Dol"
+        android:onClick="dodajDol"/>
 </RelativeLayout>

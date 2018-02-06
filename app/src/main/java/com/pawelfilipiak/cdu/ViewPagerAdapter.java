@@ -22,24 +22,35 @@ public class ViewPagerAdapter extends PagerAdapter {
     Activity activity;
     ArrayList<String> images;
     LayoutInflater inflater;
+    boolean wasNotified = false;
 
     public ViewPagerAdapter(Activity activity, ArrayList<String> images){
         this.activity = activity;
         this.images = images;
+
     }
 
     @Override
     public int getCount() {
+        if(wasNotified){
+            wasNotified = false;
+            notifyDataSetChanged();
+        }
         return images.size();
     }
 
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        wasNotified = true;
+        container.removeView((View)object);
+    }
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
     ViewGroup container;
-    public Object instantiateItem(View container, int position) {
+    public Object instantiateItem(ViewGroup container, int position) {
         inflater = (LayoutInflater)container.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.view_pager_item,container, false);
 

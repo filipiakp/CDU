@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         images2 = images;
 
         viewPager = (ViewPager)findViewById(R.id.viewPager);
+        viewPager.setOnPageChangeListener();
         adapter = new ViewPagerAdapter(MainActivity.this, images);
         viewPager.setAdapter(adapter);
 
@@ -39,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void dodajGore(View view){
-
-        adapter.inflateAndAdd("https://www.w3schools.com/w3css/img_fjords.jpg");
-
         adapter.notifyDataSetChanged();
+        images.add("https://www.w3schools.com/w3css/img_fjords.jpg");
 
+        adapter = new ViewPagerAdapter(MainActivity.this, images);
+        viewPager.setAdapter(adapter);
 
     }
 

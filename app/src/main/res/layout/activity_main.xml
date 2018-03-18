@@ -1,43 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.pawelfilipiak.cdu.MainActivity">
-
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100pt"
-        android:layout_above="@+id/viewPager2"
-        android:layout_alignParentStart="true" />
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/gorabttn"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:onClick="dodajGore"
+            android:text="Dodaj Górę" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager2"
+        <Button
+            android:id="@+id/dolbttn"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:onClick="dodajDol"
+            android:text="Dodaj Dół" />
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100pt"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
+        android:orientation="vertical">
+        <!--gorny-->
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5" />
 
-    <Button
-        android:id="@+id/gorabttn"
-        android:layout_width="80pt"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/viewPager"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="Dodaj Gore"
-        android:onClick="dodajGore"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/dolbttn"
-        android:layout_width="80pt"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/viewPager"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:text="Dodaj Dol"
-        android:onClick="dodajDol"/>
-</RelativeLayout>
+
+
+
+</LinearLayout>
